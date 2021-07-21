@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hello random person, here are the shows</p>
+    <a href="/shows/new">Create a new show</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        {% for show in shows %}
+        <tr>
+            <td>{{show.title}}</td>
+            <td>{{show.date}}</td>
+            <td><a href="/shows/{{show.id}}">View</a>
+            {%if session['user_id'] == show.users_id%}
+            <a href="/shows/{{show.id}}/edit">Edit</a>
+            <a href="/shows/{{show.id}}/delete">Delete</a>
+            {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>
